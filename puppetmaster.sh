@@ -29,4 +29,6 @@ systemctl disable firewalld
 systemctl start puppetserver
 systemctl enable puppetserver
 
+sleep 30
+
 puppetserver ca sign --all
