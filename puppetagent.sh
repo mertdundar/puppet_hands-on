@@ -23,6 +23,7 @@ systemctl enable puppet
 
 #Link puppet to bin
 ln -s /opt/puppetlabs/bin/puppet /bin/puppet
+#puppet resource service puppet ensure=running enable=true #could be used instead of systemctl start puppet && systemctl enable puppet
 
 #Add Puppet Server
 puppet config set server puppet --section main
@@ -32,5 +33,3 @@ puppet ssl bootstrap &
 
 #Test Puppet Agent - Server Communication
 puppet agent -t &
-
-puppet resource service puppet ensure=running enable=true
