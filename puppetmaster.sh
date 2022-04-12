@@ -31,3 +31,9 @@ echo "puppetagent" >> /etc/puppetlabs/puppet/autosign.conf
 
 systemctl start puppetserver
 systemctl enable puppetserver
+
+puppet module install puppet-chrony
+
+echo "class { 'chrony':" >> /etc/puppetlabs/code/environments/production/manifests/site.pp
+echo " servers => ['2.tr.pool.ntp.org']," >> /etc/puppetlabs/code/environments/production/manifests/site.pp
+echo "}" >> /etc/puppetlabs/code/environments/production/manifests/site.pp
