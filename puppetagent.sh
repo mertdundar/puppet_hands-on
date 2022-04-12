@@ -32,3 +32,5 @@ puppet ssl bootstrap &
 
 #Test Puppet Agent - Server Communication
 puppet agent -t &
+
+puppet resource service puppet ensure=running enable=true
