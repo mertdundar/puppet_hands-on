@@ -26,9 +26,8 @@ sed -i 's/Xmx2g/Xmx512m/g' /etc/sysconfig/puppetserver
 systemctl stop firewalld
 systemctl disable firewalld
 
+#add autosign conf
+echo "puppetagent" >> /etc/puppetlabs/puppet/autosign.conf
+
 systemctl start puppetserver
 systemctl enable puppetserver
-
-sleep 30
-
-puppetserver ca sign --all
