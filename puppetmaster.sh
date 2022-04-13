@@ -1,6 +1,6 @@
 #!/bin/bash
 
-agentCount = $1
+agentCount=$1
 
 #Login with Root user always
 sudo echo "sudo su -" >> .bashrc
