@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     puppetmaster.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
     end
-    puppetmaster.vm.provision "puppetmaster_installation", type: "shell", path: "./puppetmaster.sh"
+    puppetmaster.vm.provision "puppetmaster_installation", type: "shell", path: "./puppetmaster.sh", arguments: [$agentCount]
   end
   
   (1..$agentCount).each do |i|
