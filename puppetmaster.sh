@@ -1,5 +1,7 @@
 #!/bin/bash
 
+agentCount = $1
+
 #Login with Root user always
 sudo echo "sudo su -" >> .bashrc
 
@@ -7,7 +9,10 @@ sudo echo "sudo su -" >> .bashrc
 sudo -i
 
 #Add Puppet Agent ip to hosts file
-echo "10.45.0.101 puppetagent" >> /etc/hosts
+for i in $(seq 1 1 $agentCount)
+  do
+    echo "10.45.0.10${i} puppetagent${i}" >> /etc/hosts
+  done
 
 #Puppet Rackage installation
 rpm -Uvh https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
@@ -27,7 +32,10 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 #add autosign conf
-echo "puppetagent" >> /etc/puppetlabs/puppet/autosign.conf
+for i in $(seq 1 1 $agentCount)
+  do
+    echo "puppetagent${i}" >> /etc/puppetlabs/puppet/autosign.conf
+  done
 
 systemctl start puppetserver
 systemctl enable puppetserver
