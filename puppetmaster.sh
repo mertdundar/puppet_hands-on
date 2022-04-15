@@ -37,7 +37,7 @@ systemctl disable firewalld
 #add autosign conf
 for i in $(seq 1 1 $agentCount)
   do
-    echo "puppetagent${i}" >> /etc/puppetlabs/puppet/autosign.conf
+    echo "*.puppetagent${i}.orion.com" >> /etc/puppetlabs/puppet/autosign.conf
   done
 
 systemctl start puppetserver
