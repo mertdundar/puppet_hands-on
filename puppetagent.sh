@@ -1,10 +1,15 @@
 #!/bin/bash
 
+domain=$1
+
 #Login with Root user always
 sudo echo "sudo su -" >> .bashrc
 
 #Switch to root user
 sudo -i
+
+echo "DOMAIN=${domain}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+systemctl restart NetworkManager
 
 #Add Puppet ip to hosts file
 echo "10.45.0.100 puppet" >> /etc/hosts
