@@ -8,10 +8,13 @@ sudo echo "sudo su -" >> .bashrc
 #Switch to root user
 sudo -i
 
+echo "DOMAIN=orion.com" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+systemctl restart NetworkManager
+
 #Add Puppet Agent ip to hosts file
 for i in $(seq 1 1 $agentCount)
   do
-    echo "10.45.0.10${i} puppetagent${i}" >> /etc/hosts
+    echo "10.45.0.10${i} puppetagent${i}.orion.com" >> /etc/hosts
   done
 
 #Puppet Rackage installation
