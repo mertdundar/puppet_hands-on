@@ -14,7 +14,7 @@ systemctl restart NetworkManager
 #Add Puppet Agent ip to hosts file
 for i in $(seq 1 1 $agentCount)
   do
-    echo "10.45.0.10${i} puppetagent${i}.orion.com" >> /etc/hosts
+    echo "10.45.0.10${i} puppetagent${i}" >> /etc/hosts
   done
 
 #Puppet Rackage installation

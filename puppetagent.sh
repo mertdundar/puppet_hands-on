@@ -10,7 +10,7 @@ echo "DOMAIN=orion.com" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 systemctl restart NetworkManager
 
 #Add Puppet ip to hosts file
-echo "10.45.0.100 puppet.orion.com" >> /etc/hosts
+echo "10.45.0.100 puppet" >> /etc/hosts
 
 #Puppet Rackage installation
 rpm -Uvh https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
