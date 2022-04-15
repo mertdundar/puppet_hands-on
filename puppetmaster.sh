@@ -1,6 +1,7 @@
 #!/bin/bash
 
 agentCount=$1
+domain=$2
 
 #Login with Root user always
 sudo echo "sudo su -" >> .bashrc
@@ -8,7 +9,7 @@ sudo echo "sudo su -" >> .bashrc
 #Switch to root user
 sudo -i
 
-echo "DOMAIN=orion.com" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo "DOMAIN=${domain}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 systemctl restart NetworkManager
 
 #Add Puppet Agent ip to hosts file
@@ -37,7 +38,7 @@ systemctl disable firewalld
 #add autosign conf
 for i in $(seq 1 1 $agentCount)
   do
-    echo "*.puppetagent${i}.orion.com" >> /etc/puppetlabs/puppet/autosign.conf
+    echo "*.puppetagent${i}.${domain}" >> /etc/puppetlabs/puppet/autosign.conf
   done
 
 systemctl start puppetserver

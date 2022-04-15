@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
   
   $agentCount = 2
+  $domain = "orion.com"
   config.vm.box = "generic/centos8"
   config.vm.synced_folder ".", "/vagrant_data" #to sync data from os to virtual box
 
@@ -10,7 +11,7 @@ Vagrant.configure("2") do |config|
     puppetmaster.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
     end
-    puppetmaster.vm.provision "puppetmaster_installation", type: "shell", path: "./puppetmaster.sh", args: [$agentCount]
+    puppetmaster.vm.provision "puppetmaster_installation", type: "shell", path: "./puppetmaster.sh", args: [$agentCount, $domain]
   end
   
   (1..$agentCount).each do |i|
@@ -20,7 +21,7 @@ Vagrant.configure("2") do |config|
       puppetagent.vm.provider "virtualbox" do |vb|
         vb.memory = "1024"
       end
-      puppetagent.vm.provision "puppetmaster_installation", type: "shell", path: "./puppetagent.sh"
+      puppetagent.vm.provision "puppetagent_installation", type: "shell", path: "./puppetagent.sh", args: [$domain]
     end
   end
 

@@ -1,12 +1,14 @@
 #!/bin/bash
 
+domain=$1
+
 #Login with Root user always
 sudo echo "sudo su -" >> .bashrc
 
 #Switch to root user
 sudo -i
 
-echo "DOMAIN=orion.com" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo "DOMAIN=${domain}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 systemctl restart NetworkManager
 
 #Add Puppet ip to hosts file
